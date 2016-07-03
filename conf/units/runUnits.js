@@ -5,6 +5,12 @@ const requirejs = require('requirejs')
 const Jasmine = require('jasmine-core')
 const configs = require('./requireConfigs.js')
 
+const exitCodeReporter = {
+  specDone(spec) {
+    if (spec.status === 'failed') process.exitCode = 1
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 requirejs.config(configs.main)
@@ -21,5 +27,6 @@ const units = require('glob').GlobSync('proj2/test/**/*.unit.js').found
 
 requirejs(['jasmineEnv', ...units], jasmineEnv => {
   jasmineEnv.addReporter(new (require('jasmine-console-reporter'))())
+  jasmineEnv.addReporter(exitCodeReporter)
   jasmineEnv.execute()
 })
