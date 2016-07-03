@@ -1,5 +1,7 @@
-define([], () => {
-  return {
-    log: () => console.log(...arguments)
+'use strict'
+
+define([], () => ({
+  log() {
+    console.log(...arguments)
   }
-})
+}))

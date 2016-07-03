@@ -2,9 +2,14 @@
   "name": "rjs-scoping",
   "version": "1.0.0",
   "scripts": {
-    "test": "node conf/units/runUnits.js"
+    "lint": "./node_modules/.bin/eslint .",
+    "units": "node conf/units/runUnits.js",
+    "test": "npm run lint && npm run units"
   },
-  "dependencies": {
+  "devDependencies": {
+    "eslint": "3.0.0",
+    "eslint-config-wix-editor": "0.2.3",
+    "eslint-plugin-wix-editor": "1.1.1",
     "glob": "7.0.5",
     "jasmine-console-reporter": "1.2.6",
     "jasmine-core": "2.4.1",
