@@ -1,32 +1,37 @@
 'use strict'
 
-const _ = require('lodash')
+// const _ = require('lodash')
 const requirejs = require('requirejs')
 const Jasmine = require('jasmine-core')
-const configs = require('./requireConfigs.js')
-
-const exitCodeReporter = {
-  specDone(spec) {
-    if (spec.status === 'failed') process.exitCode = 1
-  }
-}
+const loaderPlugin = require('./loaderPlugin.js')
 
 ////////////////////////////////////////////////////////////////////////////////
 
-requirejs.config(configs.main)
-const requireScopes = _.mapValues(configs.additionalScopes, requirejs.config)
-
-_.forEach(requireScopes, scope => {
-  if (requirejs === scope) throw new Error('requirejs scopes are not distinct')
+requirejs.config({
+  baseUrl: 'proj2',
+  paths: {
+    loader: '../conf/units/loader',
+    math: 'main/math',
+    name: 'main/name'
+  }
 })
 
-requirejs.define('requireScopes', requireScopes)
-requirejs.define('jasmineEnv', () => Jasmine.boot(Jasmine).getEnv())
+loaderPlugin('loader', {
+  proj1: {
+    context: 'proj1',
+    baseUrl: 'proj1',
+    paths: {
+      util: 'main/util',
+      name: 'main/name'
+    }
+  }
+})
 
+const jasmineEnv = Jasmine.boot(Jasmine).getEnv()
 const units = require('glob').GlobSync('proj2/test/**/*.unit.js').found
 
-requirejs(['jasmineEnv', ...units], jasmineEnv => {
+requirejs(units, () => {
   jasmineEnv.addReporter(new (require('jasmine-console-reporter'))())
-  jasmineEnv.addReporter(exitCodeReporter)
+  jasmineEnv.addReporter(require('./exitCodeReporter.js'))
   jasmineEnv.execute()
 })
