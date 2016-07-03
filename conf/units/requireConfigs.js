@@ -4,6 +4,7 @@ module.exports = {
   main: {
     baseUrl: 'proj2',
     paths: {
+      loader: '../conf/units/loader',
       math: 'main/math'
     }
   },
