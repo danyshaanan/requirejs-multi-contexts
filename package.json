@@ -1,13 +1,9 @@
 {
   "name": "rjs-scoping",
   "version": "1.0.0",
-  "description": "",
-  "main": "unitTest.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node unitTest.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "jasmine-core": "2.4.1",
     "lodash": "4.13.1",
