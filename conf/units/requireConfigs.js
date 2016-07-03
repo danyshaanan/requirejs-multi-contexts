@@ -8,11 +8,13 @@ module.exports = {
       math: 'main/math'
     }
   },
-  proj1: {
-    context: 'proj1',
-    baseUrl: 'proj1',
-    paths: {
-      util: 'main/util'
+  additionalScopes: {
+    proj1: {
+      context: 'proj1',
+      baseUrl: 'proj1',
+      paths: {
+        util: 'main/util'
+      }
     }
   }
 }
