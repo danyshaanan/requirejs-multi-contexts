@@ -1,3 +1,4 @@
+'use strict'
 
 define(['loader!proj1:util'], util => {
 

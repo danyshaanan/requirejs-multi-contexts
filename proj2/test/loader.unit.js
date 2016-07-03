@@ -1,3 +1,4 @@
+'use strict'
 
 define(['loader', 'loader!proj1:util', 'math'], (loader, util, math) => {
 
