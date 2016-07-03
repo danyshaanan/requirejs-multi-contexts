@@ -5,6 +5,7 @@
     "test": "node unitTest.js"
   },
   "dependencies": {
+    "jasmine-console-reporter": "1.2.6",
     "jasmine-core": "2.4.1",
     "lodash": "4.13.1",
     "requirejs": "2.2.0"

@@ -17,30 +17,23 @@ requirejs.define('specs', [], function() {
     });
 });
 
-jasmine.ConsoleReporter({
-    onComplete: function(passed) {
-        if(passed) {
-            console.log('passed')
-            exit(0);
-        }
-        else {
-            console.log('failed')
-            exit(1);
-        }
-    },
-    timer: new jasmine.Timer(),
-    print: function() {
-        //process.stdout.write (jasmine.util.format.apply(this, arguments));
-    },
-    showColors: true,
-    jasmineCorePath: this.jasmineCorePath
+var JasmineConsoleReporter = require('jasmine-console-reporter');
+var reporter = new JasmineConsoleReporter({
+    colors: 1,           // (0|false)|(1|true)|2
+    cleanStack: 1,       // (0|false)|(1|true)|2|3
+    verbosity: 4,        // (0|false)|1|2|(3|true)|4
+    listStyle: 'indent', // "flat"|"indent"
+    activity: false
 });
 
+jasmine.getEnv().addReporter(reporter);
+
+
 requirejs(['specs'], function (specs) {
-    //jasmine.getEnv().execute();
+    // jasmine.getEnv().execute();
 
 
-    jasmine.getEnv().execute([specs])
+    jasmine.getEnv().execute()
     //jasmine.ConsoleReporter({
     //    print:function() {
     //        process.stdout.write(util.format.apply(this, arguments));
