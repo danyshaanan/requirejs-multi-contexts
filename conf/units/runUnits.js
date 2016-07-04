@@ -27,7 +27,7 @@ loaderPlugin('loader', {
 })
 
 const jasmineEnv = Jasmine.boot(Jasmine).getEnv()
-const units = require('glob').GlobSync('proj2/test/**/*.unit.js').found
+const units = require('glob').sync('proj2/test/**/*.unit.js')
 
 requirejs(units, () => {
   jasmineEnv.addReporter(new (require('jasmine-console-reporter'))())
