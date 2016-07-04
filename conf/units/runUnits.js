@@ -10,7 +10,6 @@ const loaderPlugin = require('./loaderPlugin.js')
 requirejs.config({
   baseUrl: 'proj2',
   paths: {
-    loader: '../conf/units/loader',
     math: 'main/math',
     name: 'main/name'
   }
